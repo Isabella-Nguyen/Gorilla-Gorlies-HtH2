@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useLogout } from '../hooks/useLogout'
 import { useAuthContext } from '../hooks/useAuthContext'
+import { LoginIcon} from '@/components/icons';
 
 const Navbar = () => {
   const { logout } = useLogout()
@@ -12,9 +13,9 @@ const Navbar = () => {
 
   return (
     <header>
-      <div className="container">
+      <div className="bg-background flex justify-between m-2">
         <Link to="/">
-          <h1>Workout Buddy</h1>
+          <h1>pictureU</h1>
         </Link>
         <nav>
           {user && (
@@ -25,8 +26,9 @@ const Navbar = () => {
           )}
           {!user && (
             <div>
-              <Link to="/login">Login</Link>
-              <Link to="/signup">Signup</Link>
+              <Link to="/login" className='text-foreground'>
+              <LoginIcon />
+              </Link>
             </div>
           )}
         </nav>

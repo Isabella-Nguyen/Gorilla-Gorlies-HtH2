@@ -1,20 +1,22 @@
 import { useState } from "react"
-import { useLogin } from "../hooks/useLogin"
+import { useSignup } from "../hooks/useSignup"
+import { Button } from "@/components/ui/button"
 
-const Login = () => {
+
+const Signup = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const {login, error, isLoading} = useLogin()
+  const {signup, error, isLoading} = useSignup()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    await login(email, password)
+    await signup(email, password)
   }
 
   return (
-    <form className="login" onSubmit={handleSubmit}>
-      <h3>Log In</h3>
+    <form className="signup" onSubmit={handleSubmit}>
+      <h3>Sign Up</h3>
       
       <label>Email address:</label>
       <input 
@@ -29,10 +31,11 @@ const Login = () => {
         value={password} 
       />
 
-      <button disabled={isLoading}>Log in</button>
-      {error && <div className="error">{error}</div>}
+      <button disabled={isLoading}>Sign up</button>
+
+      {error && <div className="error" dangerouslySetInnerHTML={{ __html: error.replace(/\n/g, '<br/>') }} />}
     </form>
   )
 }
 
-export default Login
+export default Signup
